@@ -19,7 +19,13 @@ public class F1 extends Car {
          * speed more than 250: gear 6
          */
         this.setCurrentSpeed(newSpeed);
-        if(newSpeed > 0 && newSpeed <= 50) {
+        if(newSpeed == 0){
+//          Stop the car, set gear as 1
+//            this.setCurrentSpeed(0);
+            stop();
+            changeGear(1);
+        }
+        else if(newSpeed > 0 && newSpeed <= 50) {
             changeGear(1);
             changeSpeed(newSpeed, getCurrentDirection());
         }// for all other cases, change the gear accordingly
@@ -39,16 +45,10 @@ public class F1 extends Car {
             changeGear(5);
             changeSpeed(newSpeed,getCurrentDirection());
         }
-        else if(newSpeed > 250)
+        else
         {
-            changeSpeed(newSpeed, getCurrentDirection());
             changeGear(6);
-        }
-        else{
-//          Stop the car, set gear as 1
-            this.setCurrentSpeed(0);
-            stop();
-            changeGear(1);
+            changeSpeed(newSpeed, getCurrentDirection());
         }
 
     }
